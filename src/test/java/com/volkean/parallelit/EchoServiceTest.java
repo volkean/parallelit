@@ -12,6 +12,7 @@ import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.TestPropertySource;
+import org.springframework.web.client.RestTemplate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
@@ -20,13 +21,18 @@ import static org.mockito.Mockito.when;
 @Import(TestcontainersConfiguration.class)
 @SpringBootTest
 @TestPropertySource("classpath:application-test.properties")
-class EchoServiceIT {
+class EchoServiceTest {
 
     @TestConfiguration
     static class TestConfig {
         @Bean
         public IpQueryService ipQueryService() {
             return Mockito.mock(IpQueryService.class);
+        }
+
+        @Bean
+        public RestTemplate getRestTemplate() {
+            return new RestTemplate();
         }
     }
 

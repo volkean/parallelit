@@ -1,10 +1,16 @@
 package com.volkean.parallelit.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class IpInfoResponse {
     private String ip;
     private String type;
@@ -25,6 +31,16 @@ public class IpInfoResponse {
     private String connectionType;
     private Location location;
 
+    @Data
+    @Builder
+    public static class Language {
+        private String code;
+        private String name;
+        private String nativeName;
+    }
+
+    @Data
+    @Builder
     public static class Location {
         private Integer geonameId;
         private String capital;
@@ -34,12 +50,5 @@ public class IpInfoResponse {
         private String countryFlagEmojiUnicode;
         private String callingCode;
         private Boolean isEu;
-
-        public static class Language {
-            private String code;
-            private String name;
-            private String nativeName;
-
-        }
     }
 }
